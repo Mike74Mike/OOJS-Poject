@@ -3,14 +3,14 @@
  * app.js */
 const keys= document.querySelectorAll('.key');
 
- let game = new Game();
+
+ let game = null;
 
  document.querySelector('#btn__reset').addEventListener('click', e =>{
-
-
-   game.startGame()
-  e.preventDefault()
+    game = new Game();
+    game.startGame()
  });
+
 
   keys.forEach(key => {
     key.addEventListener('click', function handleInteraction(e) {
@@ -23,7 +23,9 @@ const keys= document.querySelectorAll('.key');
 
     }
     if(game.checkForWin()){
-
+      game.gameOver(true);
     }
+
+
   })
 })

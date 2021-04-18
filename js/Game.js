@@ -47,6 +47,7 @@
 *                    won
 */
    checkForWin(){
+     console.log(this.activePhrase.phrase)
      const letters = document.querySelectorAll('.letter');
      const hideLetters =document.querySelectorAll('.hide');
       for(let i = 0; i< letters.length; i++){
@@ -67,6 +68,7 @@
   removeLife(){
     const tries = document.querySelectorAll('img');
     const overlay = document.querySelector('.start');
+    const gameId = document.querySelector('#game-over-message');
 
     if(tries[0].getAttribute('src') === 'images/liveHeart.png' && tries[1].getAttribute('src') === 'images/liveHeart.png'){
       tries[0].src =''
@@ -84,11 +86,10 @@
       tries[4].src =''
       tries[4].src= 'images/lostHeart.png';
     }  if(tries[4].getAttribute('src') === 'images/lostHeart.png'){
-        overlay.style.backgroundColor ='#ff8c00'
-        overlay.style.display ='block'
-        overlay.innerHTML =`<h2 class="title">Phrase Hunter</h2>
-				                    <h1 id="game-over-message">Sorry, better luck next time!</h1>
-				                    <button id="btn__reset">Start Game</button>`
+        gameId.innerHTML = 'Sorry, better luck next time!'
+        overlay.classList.add('lose');
+        overlay.style.display ='flex';
+
     }
   }
 /**
@@ -96,13 +97,13 @@
 * @param {boolean} gameWon - Whether or not the user won the game
 */
   gameOver(gameWon){
+    const gameId = document.querySelector('#game-over-message')
+    const overlay = document.querySelector('.start');
     if(this.checkForWin() === gameWon){
-      const overlay = document.querySelector('.start');
-      overlay.style.display ='block'
-      overlay.style.backgroundColor ='#77DD77'
-      overlay.innerHTML =`<h2 class="title">Phrase Hunter</h2>
-				                  <h1 id="game-over-message">Great Work</h1>
-				                  <button id="btn__reset">Start Game</button>`
+      gameId.innerHTML ='Great job!'
+      overlay.classList.add('win');
+      overlay.style.display ='flex'
+
     }
   }
 }

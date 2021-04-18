@@ -8,7 +8,7 @@ class Phrase {
   */
   addPhraseToDisplay(){
     const ul = document.querySelector('ul');
-    const letters = this.phrase.split("")
+    const letters = game.activePhrase.phrase.split("")
 
     letters.forEach(letter=> {
       const li = document.createElement('li')
