@@ -1,10 +1,13 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * app.js */
-const keys= document.querySelectorAll('.key');
+ /**
+ *@file An game using OOJS
+ *@author - Michael
+ */
+ let game;
+ const keys= document.querySelectorAll('.key');
 
-
- let game = null;
 
  document.querySelector('#btn__reset').addEventListener('click', e =>{
     game = new Game();
@@ -12,20 +15,8 @@ const keys= document.querySelectorAll('.key');
  });
 
 
-  keys.forEach(key => {
-    key.addEventListener('click', function handleInteraction(e) {
-    if(game.activePhrase.checkLetter(e.target.textContent) === false || !game.activePhrase.phrase.includes(e.target.textContent)){
-        e.target.classList.add('lose');
-        game.removeLife();
-    } if( game.activePhrase.showMatchedLetter(e.target.textContent) || game.activePhrase.checkLetter(e.target.textContent) === true || game.activePhrase.phrase.includes(e.target.textContent)){
-
-          e.target.classList.add('chosen');
-
-    }
-    if(game.checkForWin()){
-      game.gameOver(true);
-    }
-
-
-  })
-})
+for(let i= 0; i<keys.length; i++){
+    keys[i].addEventListener('click', e=>{
+      game.handleInteraction(e.target)
+    })
+}

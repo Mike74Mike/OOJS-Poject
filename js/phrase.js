@@ -1,3 +1,7 @@
+/**
+*@file An game using OOJS
+*@author - Michael
+*/
 class Phrase {
   constructor(phrase){
     this.phrase = phrase.toLowerCase();
@@ -48,4 +52,6 @@ class Phrase {
       }
         })
     }
-  }
+
+
+}
