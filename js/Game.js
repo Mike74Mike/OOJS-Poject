@@ -44,6 +44,11 @@
      overlay.style.display = 'none';
      this.activePhrase = this.getRandomPhrase()
      this.activePhrase.addPhraseToDisplay();
+      if(overlay.classList.contains('win')){
+        overlay.classList.remove('win');
+      } else if (overlay.classList.contains('lose')){
+        overlay.classList.remove('lose');
+      }
    }
 
 /**
@@ -108,7 +113,7 @@
     const tries = document.querySelectorAll('img');
     const gameId = document.querySelector('#game-over-message')
     const overlay = document.querySelector('.start');
-    if(this.checkForWin() === gameWon){
+    if(this.checkForWin()){
       gameId.innerHTML ='Great job!'
       overlay.classList.add('win');
       overlay.style.display ='flex'
@@ -119,6 +124,7 @@
        overlay.classList.add('lose');
        overlay.style.display ='flex';
        game.resetBoard()
+
    }
   }
   /**
@@ -134,6 +140,9 @@
        key.classList.add('chosen');
 
  }
+
+    key.disabled = true;
+
  if(game.checkForWin()){
    game.gameOver(true);
   }
@@ -154,8 +163,11 @@
      }
      if(button[i].classList.contains('lose')){
        button[i].classList.remove('lose');
+     } if(button[i].disabled === true){
+       button[i].disabled= false;
      }
    }
+
    const img = document.querySelectorAll('img');
    for(let i = 0; i<img.length; i++){
      if(img[i].getAttribute('src') === 'images/lostHeart.png'){
